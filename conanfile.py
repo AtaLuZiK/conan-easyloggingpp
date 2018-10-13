@@ -30,6 +30,8 @@ class EasyloggingConan(ConanFile):
             tools.replace_in_file("CMakeLists.txt", "project(Easyloggingpp CXX)", '''project(Easyloggingpp CXX)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()''')
+            tools.replace_in_file("CMakeLists.txt", "add_library(easyloggingpp STATIC src/easylogging++.cc)", '''add_library(easyloggingpp STATIC src/easylogging++.cc)
+add_definitions(-DELPP_NO_DEFAULT_LOG_FILE)''')
 
     def build(self):
         cmake = CMake(self)
